@@ -8,9 +8,8 @@ namespace PangoCalculator.ApiControllers
         public decimal Argument1 { get; set; }
 
         [Display(Name = "Operator")]
-        [Required]
         [EnumDataType(typeof(Operator))]
-        public Operator? Operator { get; set; }
+        public Operator Operator { get; set; }
 
         [Display(Name = "Second argument")]
         public decimal Argument2 { get; set; }
