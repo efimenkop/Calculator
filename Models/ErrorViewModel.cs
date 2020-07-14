@@ -1,5 +1,3 @@
-using System;
-
 namespace PangoCalculator.Models
 {
     public class ErrorViewModel
