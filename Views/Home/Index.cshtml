@@ -1,0 +1,47 @@
+﻿@model PangoCalculator.ApiControllers.CalculateRequest;
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#submitButton').click(function () {
+            var operator = $('#Operator :selected').text();
+            var argument1 = $('#Argument1').val();
+            var argument2 = $('#Argument2').val();
+            $.ajax({
+                type: 'GET',
+                url: '/api/calculator?argument1=' + argument1 + '&argument2=' + argument2 + '&operator=' + operator + '',
+                success: function (response) {
+                    debugger;
+                    $('#Result').html(response.result);
+                },
+                error: function (req, status, error) {
+                    alert(error);
+                }
+            });
+        });
+    });
+</script>
+
+<div class="form-group">
+    <div class="row">
+        <label asp-for="Argument1" class="col-lg-2"></label>
+        <input type="number" asp-for="Argument1" class="col-lg-2" />
+    </div>
+    <div class="row">
+        <label asp-for="Argument2" class="col-lg-2"></label>
+        <input type="number" asp-for="Argument2" class="col-lg-2" />
+    </div>
+    <div class="row">
+        <label asp-for="Operator" class="col-lg-2"></label>
+        <select asp-for="Operator" class="col-lg-2" asp-items="Html.GetEnumSelectList<PangoCalculator.ApiControllers.Operator>()">
+            <option selected="selected" value="">Select</option>
+        </select>
+    </div>
+    <div class="row">
+        <label class="col-lg-2">Result</label>
+        <label id="Result"></label>
+    </div>
+    <div class="row">
+        <input type="submit" value="Submit" id="submitButton" />
+    </div>
+</div>
