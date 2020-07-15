@@ -7,15 +7,15 @@ namespace PangoCalculator.ApiControllers
         [Display(Name = "First argument")]
         public decimal Argument1 { get; set; }
 
-        [Display(Name = "Operator")]
-        [EnumDataType(typeof(Operator))]
-        public Operator Operator { get; set; }
+        [Display(Name = "Operation")]
+        [EnumDataType(typeof(Operation))]
+        public Operation Operation { get; set; }
 
         [Display(Name = "Second argument")]
         public decimal Argument2 { get; set; }
     }
 
-    public enum Operator
+    public enum Operation
     {
         Add,
         Substract,

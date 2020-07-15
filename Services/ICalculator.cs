@@ -5,6 +5,6 @@ namespace PangoCalculator.Services
 {
     public interface ICalculator
     {
-        Task<decimal> Calculate(decimal argument1, decimal argument2, Operator operation);
+        Task<decimal> Calculate(decimal argument1, decimal argument2, Operation operation);
     }
 }

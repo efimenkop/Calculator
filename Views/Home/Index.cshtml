@@ -4,14 +4,13 @@
     $(document).ready(function () {
 
         $('#submitButton').click(function () {
-            var operator = $('#Operator :selected').text();
+            var operation = $('#Operation :selected').text();
             var argument1 = $('#Argument1').val();
             var argument2 = $('#Argument2').val();
             $.ajax({
                 type: 'GET',
-                url: '/api/calculator?argument1=' + argument1 + '&argument2=' + argument2 + '&operator=' + operator + '',
+                url: '/api/calculator?argument1=' + argument1 + '&argument2=' + argument2 + '&operation=' + operation + '',
                 success: function (response) {
-                    debugger;
                     $('#Result').html(response.result);
                 },
                 error: function (req, status, error) {
@@ -28,14 +27,14 @@
         <input type="number" asp-for="Argument1" class="col-lg-2" />
     </div>
     <div class="row">
-        <label asp-for="Argument2" class="col-lg-2"></label>
-        <input type="number" asp-for="Argument2" class="col-lg-2" />
-    </div>
-    <div class="row">
-        <label asp-for="Operator" class="col-lg-2"></label>
-        <select asp-for="Operator" class="col-lg-2" asp-items="Html.GetEnumSelectList<PangoCalculator.ApiControllers.Operator>()">
+        <label asp-for="Operation" class="col-lg-2"></label>
+        <select asp-for="Operation" class="col-lg-2" asp-items="Html.GetEnumSelectList<PangoCalculator.ApiControllers.Operation>()">
             <option selected="selected" value="">Select</option>
         </select>
+    </div>
+    <div class="row">
+        <label asp-for="Argument2" class="col-lg-2"></label>
+        <input type="number" asp-for="Argument2" class="col-lg-2" />
     </div>
     <div class="row">
         <label class="col-lg-2">Result</label>

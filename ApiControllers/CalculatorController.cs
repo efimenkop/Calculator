@@ -18,7 +18,7 @@ namespace PangoCalculator.ApiControllers
         [HttpGet]
         public async Task<CalculateResponse> Get([FromQuery] CalculateRequest request)
         {
-            var result = await _calculator.Calculate(request.Argument1, request.Argument2, request.Operator);
+            var result = await _calculator.Calculate(request.Argument1, request.Argument2, request.Operation);
 
             return new CalculateResponse { Result = result };
         }
