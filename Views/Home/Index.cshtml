@@ -4,14 +4,12 @@
     $(document).ready(function () {
 
         $('#submitButton').click(function () {
-            var operation = $('#Operation :selected').text();
-            var argument1 = $('#Argument1').val();
-            var argument2 = $('#Argument2').val();
+            var expression = encodeURIComponent($('#argument1').val() + $('#operation :selected').text() + $('#argument2').val());
             $.ajax({
                 type: 'GET',
-                url: '/api/calculator?argument1=' + argument1 + '&argument2=' + argument2 + '&operation=' + operation + '',
+                url: '/api/calculator?expression=' + expression,
                 success: function (response) {
-                    $('#Result').html(response.result);
+                    $('#result').html(response.result);
                 },
                 error: function (req, status, error) {
                     alert(error);
@@ -23,22 +21,25 @@
 
 <div class="form-group">
     <div class="row">
-        <label asp-for="Argument1" class="col-lg-2"></label>
-        <input type="number" asp-for="Argument1" class="col-lg-2" />
+        <label class="col-lg-2">First argument</label>
+        <input type="number" id="argument1" class="col-lg-2" />
     </div>
     <div class="row">
-        <label asp-for="Operation" class="col-lg-2"></label>
-        <select asp-for="Operation" class="col-lg-2" asp-items="Html.GetEnumSelectList<PangoCalculator.ApiControllers.Operation>()">
-            <option selected="selected" value="">Select</option>
+        <label class="col-lg-2">Operation</label>
+        <select class="col-lg-2" id="operation">
+            <option selected="selected" value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
         </select>
     </div>
     <div class="row">
-        <label asp-for="Argument2" class="col-lg-2"></label>
-        <input type="number" asp-for="Argument2" class="col-lg-2" />
+        <label class="col-lg-2">Second argument</label>
+        <input type="number" id="argument2" class="col-lg-2" />
     </div>
     <div class="row">
         <label class="col-lg-2">Result</label>
-        <label id="Result"></label>
+        <label id="result"></label>
     </div>
     <div class="row">
         <input type="submit" value="Submit" id="submitButton" />
